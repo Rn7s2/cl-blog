@@ -10,10 +10,10 @@ A minimalism blog written in Common Lisp.
 You can use Apache mod_proxy. So you can run it as common user and not directly export it to port 80.
 
 ## Functions
-[x] Markdown
-[x] KaTeX
-[x] User login/logout
-[x] Add/delete posts
-[x] Abstract
-[ ] comment
-[ ] Tags
+- [x] Markdown
+- [x] KaTeX
+- [x] User login/logout
+- [x] Add/delete posts
+- [x] Abstract
+- [ ] comment
+- [ ] Tags
