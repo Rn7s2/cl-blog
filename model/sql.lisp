@@ -1,6 +1,6 @@
 (ql:quickload 'sqlite)
 
-(defvar *db-path* (merge-pathnames "model/test.db"))
+(defvar *db-path* (merge-pathnames "model/blog.db"))
 
 (defmacro sql-execute-sql (sql &rest params)
   (let ((db-name (gensym)))

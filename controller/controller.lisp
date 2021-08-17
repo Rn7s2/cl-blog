@@ -6,6 +6,9 @@
 (easy-routes:defroute about ("/about") ()
   (easy-routes:redirect "/?p=2"))
 
+(easy-routes:defroute about ("/cl-blog") ()
+  (easy-routes:redirect "/?p=3"))
+
 (easy-routes:defroute login ("/login") (failedp outdatedp)
   (if (get-user-loginp)
       (easy-routes:redirect "/admin")
