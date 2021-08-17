@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>仪表盘 - [Rn]7s²的博客</title>
+    <title>修改：<!-- TMPL_VAR title --> - [Rn]7s²的博客</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
@@ -16,12 +16,13 @@
     </style>
   </head>
   <body>
+
     <div class="jumbotron text-center" style="margin-bottom:0">
-      <h1>仪表盘</h1>
+      <h1>修改：<!-- TMPL_VAR title --></h1>
     </div>
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <a class="navbar-brand" href="#">导航</a>
+      <a class="navbar-brand" href="/">导航</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -41,48 +42,21 @@
       <div class="row">
         <div class="col-sm-9">
           <div class="card">
-            <div class="card-header"><h3>添加文章</h3></div>
+            <div class="card-header">
+              <h3>修改：<!-- TMPL_VAR title --></h3>
+            </div>
             <div class="card-body">
-              <form action="/add" method="post">
+              <form action="/modify?p=<!-- TMPL_VAR id -->" method="post">
                 <div class="form-group">
                   <label for="title">标题:</label>
-                  <input type="text" class="form-control" id="title" name="title"></input>
+                  <input type="text" class="form-control" id="title" name="title" value="<!-- TMPL_VAR title -->"></input>
                   <label for="content">内容:</label>
-                  <textarea class="form-control" rows="5" id="content" name="content"></textarea>
+                  <textarea class="form-control" rows="20" id="content" name="content"><!-- TMPL_VAR content --></textarea>
                   <br/>
+                  <!-- 改为wangEditor并且添加空标题禁止添加的检测 -->
                   <button type="submit" class="btn btn-primary" style="float: right;">提交</button>
                 </div>
               </form>
-            </div>
-          </div>
-          <br/>
-          <div class="card">
-            <div class="card-header"><h3>文章管理</h3></div>
-            <div class="card-body">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>序号</th>
-                    <th>标题</th>
-                    <th>最后修改</th>
-                    <th>操作</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- TMPL_LOOP posts -->
-                  <tr>
-                    <td><!-- TMPL_VAR id --></td>
-                    <td><!-- TMPL_VAR title --></td>
-                    <td><!-- TMPL_VAR date --></td>
-                    <td>
-                      <a href="/?p=<!-- TMPL_VAR id -->">查看</a>
-                      <a href="/modify?p=<!-- TMPL_VAR id -->">修改</a>
-                      <a href="/delete?p=<!-- TMPL_VAR id -->">删除</a>
-                    </td>
-                  </tr>
-                  <!-- /TMPL_LOOP -->
-                </tbody>
-              </table>
             </div>
           </div>
           <br/>
