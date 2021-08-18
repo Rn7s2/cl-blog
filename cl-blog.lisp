@@ -13,6 +13,7 @@
   (hunchentoot:start *server*))
 
 (defun terminate ()
-  (hunchentoot:stop *server*))
+  (hunchentoot:stop *server*)
+  (exit))
 
 (launch)
