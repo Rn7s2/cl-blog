@@ -4,6 +4,7 @@
 
 (defvar *index-reverse-order* t)
 (defvar *admin-reverse-order* t)
+(defvar *index-posts-pre-page* 5)
 
 (defun parse-template (file-path values)
   (let ((stream-name (gensym)))
@@ -12,6 +13,7 @@
                                              values
                                              :stream stream-name))))
 
+;; 暂时不支持分页
 (defun render-index-page (loginp posts)
   (parse-template (merge-pathnames "view/index.tmpl")
                   `(:loginp ,loginp
