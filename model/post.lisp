@@ -44,10 +44,11 @@
     (sql-execute-sql "insert into posts(title,date,content) values (?,date('now'),?)"
                      title
                      content))
-  (easy-routes:redirect "/admin"))
+  (easy-routes:redirect "/"))
 
 (defun set-delete-post-data (p)
-  (sql-execute-sql "delete from posts where id=?" p))
+  (sql-execute-sql "delete from posts where id=?" p)
+  (easy-routes:redirect "/admin"))
 
 (defun set-modify-post-data (p title content)
   (when (and (not (null p)) (not (null title)) (not (null content)))
@@ -55,4 +56,4 @@
                      title
                      content
                      p))
-  (easy-routes:redirect "/admin"))
+  (easy-routes:redirect (format nil "/?p=~a" p)))
