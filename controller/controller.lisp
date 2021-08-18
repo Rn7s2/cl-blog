@@ -44,12 +44,12 @@
   (if (get-user-loginp)
       (set-modify-post-data p title content)))
 
-(push (hunchentoot:create-folder-dispatcher-and-handler
-       "/static/"
-       (merge-pathnames "static/"))
-      hunchentoot:*dispatch-table*)
-
 (hunchentoot:define-easy-handler (upload :uri "/upload") (file)
   (when (and (get-user-loginp) (not (null file)))
     (set-upload-file-data file))
   (easy-routes:redirect "/admin"))
+
+(push (hunchentoot:create-folder-dispatcher-and-handler
+       "/static/"
+       (merge-pathnames "static/"))
+      hunchentoot:*dispatch-table*)
