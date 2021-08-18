@@ -48,6 +48,12 @@
             </div>
             <div class="card-footer">
               <a href="/modify?p=<!-- TMPL_VAR id -->">修改</a>
+              <a id="next" style="float: right;">下一篇</a>
+              <a id="previous" style="float: right; margin-right: 10px;">上一篇</a>
+              <script>
+                document.getElementById('next').href = "/?p=" + (<!-- TMPL_VAR id --> + 1);
+                document.getElementById('previous').href = "/?p=" + (<!-- TMPL_VAR id --> - 1);
+              </script>
             </div>
           </div>
           <br/>

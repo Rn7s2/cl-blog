@@ -18,7 +18,7 @@
                                          :date ,(third item)
                                          :content ,(fourth item)))
                                      p)))
-    (if (null (first post))
+    (if (null (getf post :title))
         (easy-routes:redirect "/")
         (render-post-page (get-user-loginp) post))))
 
