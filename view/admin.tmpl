@@ -55,10 +55,10 @@
                     　　var myForm = document.createElement("form");
                     　　myForm.method = "post";
                     　　myForm.action = to;
-                    　　for (var i in p){
+                    　　for (var i in p) {
                         　　　　var myInput = document.createElement("textarea");
                         　　　　myInput.setAttribute("name", i);
-                        　　　　myInput.setAttribute("value", p[i]);
+                        　　　　myInput.value = p[i];
                         　　　　myForm.appendChild(myInput);
                         　　}
                     　　document.body.appendChild(myForm);
