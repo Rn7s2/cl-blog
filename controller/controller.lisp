@@ -9,6 +9,9 @@
       (get-main-page-data (if (null v) 0 (string->number v)))
       (get-post-page-data p)))
 
+(easy-routes:defroute post-list ("/list") ()
+  (get-list-page-data))
+
 (easy-routes:defroute about ("/about") ()
   (easy-routes:redirect "/?p=2"))
 

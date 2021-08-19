@@ -10,6 +10,14 @@
                                                      (fourth item)))))))
       (render-main-page (get-user-loginp) posts v))))
 
+(defun get-list-page-data ()
+  (let* ((posts (sql-query-all-posts "select id,title,date from posts"
+                                     (lambda (item)
+                                       (list :id (first item)
+                                             :title (second item)
+                                             :date (third item))))))
+    (render-list-page posts)))
+
 (defun get-post-page-data (p)
   (let ((post (sql-query-single-post "select * from `posts` where `id`=?"
                                      (lambda (item)

@@ -4,6 +4,7 @@
 
 (defvar *main-reverse-order* t)
 (defvar *admin-reverse-order* t)
+(defvar *list-reverse-order* t)
 (defvar *volume-size* 5)
 
 (defun parse-template (file-path values)
@@ -47,6 +48,12 @@
   (parse-template (merge-pathnames "view/admin.tmpl")
                   `(:loginp ,loginp
                     :posts ,(if (null *admin-reverse-order*)
+                                posts
+                                (reverse posts)))))
+
+(defun render-list-page (posts)
+  (parse-template (merge-pathnames "view/list.tmpl")
+                  `(:posts ,(if (null *list-reverse-order*)
                                 posts
                                 (reverse posts)))))
 
