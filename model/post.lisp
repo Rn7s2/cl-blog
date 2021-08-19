@@ -1,4 +1,4 @@
-(defun get-index-page-data ()
+(defun get-main-page-data (v)
   (flet ((make-abstract (str)
            (subseq str 0 (search "<hr" str))))
     (let ((posts (sql-query-all-posts "select * from posts"
@@ -8,7 +8,7 @@
                                           :date ,(third item)
                                           :content ,(make-abstract
                                                      (fourth item)))))))
-      (render-index-page (get-user-loginp) posts))))
+      (render-main-page (get-user-loginp) posts v))))
 
 (defun get-post-page-data (p)
   (let ((post (sql-query-single-post "select * from `posts` where `id`=?"

@@ -2,8 +2,9 @@
 
 (setf html-template:*string-modifier* #'cl:identity)
 
-(defvar *index-reverse-order* t)
+(defvar *main-reverse-order* t)
 (defvar *admin-reverse-order* t)
+(defvar *volume-size* 5)
 
 (defun parse-template (file-path values)
   (let ((stream-name (gensym)))
@@ -12,12 +13,27 @@
                                              values
                                              :stream stream-name))))
 
-(defun render-index-page (loginp posts)
-  (parse-template (merge-pathnames "view/index.tmpl")
-                  `(:loginp ,loginp
-                    :posts ,(if (null *index-reverse-order*)
-                                posts
-                                (reverse posts)))))
+(defun select-volume (posts v)
+  (let* ((begin (* v *volume-size*))
+         (end (+ begin *volume-size*)))
+    (if (>= begin (length posts))
+        nil
+        (if (>= end (length posts))
+            (subseq posts begin (length posts))
+            (subseq posts begin end)))))
+
+(defun render-main-page (loginp posts v)
+  (let ((total-volume (ceiling (/ (length posts) *volume-size*))))
+    (if (>= v total-volume)
+        (easy-routes:redirect "/")
+        (parse-template (merge-pathnames "view/main.tmpl")
+                        `(:loginp ,loginp
+                          :posts ,(select-volume (if (null *main-reverse-order*)
+                                                     posts
+                                                     (reverse posts))
+                                                 v)
+                          :current-volume ,(+ v 1)
+                          :total-volume ,total-volume)))))
 
 (defun render-post-page (loginp post)
   (parse-template (merge-pathnames "view/post.tmpl")

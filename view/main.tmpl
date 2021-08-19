@@ -51,6 +51,21 @@
           </div>
           <br/>
           <!-- /TMPL_LOOP -->
+          <ul class="pagination" id="pagination">
+            <script>
+              for(var i = 1; i <= <!-- TMPL_VAR total-volume -->; i++) {
+                  var cur = document.getElementById('pagination').innerHTML;
+                  var prefix = "";
+                  if(i == <!-- TMPL_VAR current-volume -->)
+                      prefix = "<li class='page-item active'>";
+                  else
+                      prefix = "<li class='page-item'>";
+                  document.getElementById('pagination').innerHTML = cur + prefix
+                      + "<a class='page-link' href='/?v="
+                      + (i - 1) + "'>" + i + "</a></li>";
+              }
+              </script>
+          </ul>
         </div>
         <div class="col-sm-3">
           <h3>博客功能</h3>

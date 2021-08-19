@@ -1,6 +1,12 @@
-(easy-routes:defroute index ("/") (p)
+;; p -> post id, v -> page id, d -> tag id
+(defun string->number (str)
+  (let ((stream-name (gensym)))
+    (with-input-from-string (stream-name str)
+      (read stream-name))))
+
+(easy-routes:defroute main ("/") (p v)
   (if (null p)
-      (get-index-page-data)
+      (get-main-page-data (if (null v) 0 (string->number v)))
       (get-post-page-data p)))
 
 (easy-routes:defroute about ("/about") ()
