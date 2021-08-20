@@ -1,3 +1,13 @@
+(ql:quickload '(3bmd 3bmd-ext-code-blocks))
+
+(setf 3bmd-code-blocks:*code-blocks* t)
+(setf 3bmd-code-blocks:*renderer* :nohighlight)
+
+(defun markdown->html (md)
+  (let ((stream-name (gensym)))
+    (with-output-to-string (stream-name)
+      (3bmd:parse-string-and-print-to-stream md stream-name))))
+
 (defun get-main-page-data (v)
   (flet ((make-abstract (str)
            (subseq str 0 (search "<hr" str))))
@@ -7,7 +17,8 @@
                                           :title ,(second item)
                                           :date ,(third item)
                                           :content ,(make-abstract
-                                                     (fourth item)))))))
+                                                     (markdown->html
+                                                      (fourth item))))))))
       (render-main-page (get-user-loginp) posts v))))
 
 (defun get-list-page-data ()
@@ -24,7 +35,8 @@
                                        `(:id ,(first item)
                                          :title ,(second item)
                                          :date ,(third item)
-                                         :content ,(fourth item)))
+                                         :content ,(markdown->html
+                                                    (fourth item))))
                                      p)))
     (if (null (getf post :title))
         (easy-routes:redirect "/")
