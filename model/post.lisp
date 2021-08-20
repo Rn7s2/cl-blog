@@ -4,9 +4,10 @@
 (setf 3bmd-code-blocks:*renderer* :nohighlight)
 
 (defun markdown->html (md)
-  (let ((stream-name (gensym)))
-    (with-output-to-string (stream-name)
-      (3bmd:parse-string-and-print-to-stream md stream-name))))
+  (when (not (null md))
+    (let ((stream-name (gensym)))
+      (with-output-to-string (stream-name)
+        (3bmd:parse-string-and-print-to-stream md stream-name)))))
 
 (defun get-main-page-data (v)
   (flet ((make-abstract (str)
