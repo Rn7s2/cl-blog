@@ -51,7 +51,7 @@
                                 posts
                                 (reverse posts)))))
 
-(defun render-list-page (posts)
+(defun render-list-page (loginp posts)
   (parse-template (merge-pathnames "view/list.tmpl")
                   `(:posts ,(if (null *list-reverse-order*)
                                 posts

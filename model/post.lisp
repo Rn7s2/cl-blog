@@ -28,7 +28,7 @@
                                        (list :id (first item)
                                              :title (second item)
                                              :date (third item))))))
-    (render-list-page posts)))
+    (render-list-page (get-user-loginp) posts)))
 
 (defun get-post-page-data (p)
   (let ((post (sql-query-single-post "select * from `posts` where `id`=?"
