@@ -53,7 +53,8 @@
 
 (defun render-list-page (loginp posts)
   (parse-template (merge-pathnames "view/list.tmpl")
-                  `(:posts ,(if (null *list-reverse-order*)
+                  `(:loginp ,loginp
+                    :posts ,(if (null *list-reverse-order*)
                                 posts
                                 (reverse posts)))))
 
