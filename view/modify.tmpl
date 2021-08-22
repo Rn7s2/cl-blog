@@ -44,42 +44,15 @@
               <h3>修改：<!-- TMPL_VAR title --></h3>
             </div>
             <div class="card-body">
-              <label for="title">标题:</label>
-              <input type="text" class="form-control" id="title" value="<!-- TMPL_VAR title -->"
-                     onkeydown="if(event.keyCode==13){event.keyCode=0;event.returnValue=false;}"></input>
-              <label for="editor">内容:</label>
-              <textarea class="form-control" rows="25" id="editor"><!-- TMPL_VAR content --></textarea>
-              <br/>
-              <a class="btn btn-info" role="button" onclick="submit()" style="float: right;">提交</a>
-              <script>
-                function doPost(to, p) {
-                    　　var myForm = document.createElement("form");
-                    　　myForm.method = "post";
-                    　　myForm.action = to;
-                    　　for (var i in p) {
-                        　　　　var myInput = document.createElement("textarea");
-                        　　　　myInput.setAttribute("name", i);
-                        　　　　myInput.value = p[i];
-                        　　　　myForm.appendChild(myInput);
-                        　　}
-                    　　document.body.appendChild(myForm);
-                    　　myForm.submit();
-                    　　document.body.removeChild(myForm);
-                }
-                
-                function submit() {
-                    var data = {
-                        title: document.getElementById('title').value,
-                        content: document.getElementById('editor').value
-                    };
-                    
-                    if(data.title.length > 0) {
-                        doPost('/modify?p=<!-- TMPL_VAR id -->', data);
-                    } else {
-                        alert('您未填写标题！');
-                    }
-                }
-              </script>
+              <form action="/modify?p=<!-- TMPL_VAR id -->" method="post">
+                <label for="title">标题:</label>
+                <input type="text" class="form-control" id="title" value="<!-- TMPL_VAR title -->" name="title"
+                       onkeydown="if(event.keyCode==13){event.keyCode=0;event.returnValue=false;}"></input>
+                <label for="editor">内容:</label>
+                <textarea class="form-control" rows="25" id="editor" name="content"><!-- TMPL_VAR content --></textarea>
+                <br/>
+                <input type="submit" value="提交">
+              </form>
             </div>
           </div>
           <br/>
