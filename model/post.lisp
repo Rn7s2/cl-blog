@@ -1,5 +1,6 @@
-(ql:quickload '(3bmd 3bmd-ext-code-blocks))
+(ql:quickload '(3bmd 3bmd-ext-code-blocks 3bmd-ext-tables))
 
+(setf 3bmd-tables:*tables* t)
 (setf 3bmd-code-blocks:*code-blocks* t)
 (setf 3bmd-code-blocks:*renderer* :nohighlight)
 
