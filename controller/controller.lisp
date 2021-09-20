@@ -12,6 +12,9 @@
 (easy-routes:defroute post-list ("/list") ()
   (get-list-page-data))
 
+(easy-routes:defroute about ("/server") ()
+  (easy-routes:redirect "/?p=19"))
+
 (easy-routes:defroute about ("/about") ()
   (easy-routes:redirect "/?p=2"))
 
